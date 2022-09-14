@@ -1,0 +1,20 @@
+name: GitHub Organization User Activity Report
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    environment: Actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Analyze User Activity
+        id: analyze_user_activity
+        uses: peter-murray/inactive-users-action@v1
+        with:
+          token: ${{ secrets.ORGANIZATION_AND_REPO_ACCESS_TOKEN }}
+          organization: ClarabridgeInc
+          activity_days: 10
+      - name: Save User Activity Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: |
+            ${{ steps.analyze_user_activity.outputs.report_csv }}
