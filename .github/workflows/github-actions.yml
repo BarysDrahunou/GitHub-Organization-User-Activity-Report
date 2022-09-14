@@ -16,4 +16,5 @@ jobs:
         with:
           name: reports
           path: |
-            ${{ steps.analyze_user_activity.outputs.report_csv }}
+            ${{ steps.analyze_user_activity.outputs.report_csv }} |
+            ${{ steps.analyze_user_activity.outputs.report_json }}
